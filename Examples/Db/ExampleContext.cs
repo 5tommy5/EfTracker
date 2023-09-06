@@ -6,6 +6,7 @@ namespace Examples.Db
     {
         public ExampleContext()
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -15,17 +16,6 @@ namespace Examples.Db
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=exampleDb;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-            modelBuilder.Entity<ExampleEntity>()
-                .Property(x => x.Title)
-                .IsRequired();
-
-            base.OnModelCreating(modelBuilder);
-
         }
     }
 }

@@ -31,9 +31,8 @@ async Task Example1()
     var getResult2 = await service.Get(id.Value);
     Console.WriteLine(getResult2.Counter); //get Counter = 1000
 
-    db.ChangeTracker.Clear();
-    var getResult3 = await service.Get(id.Value);
-    Console.WriteLine(getResult3.Counter); //get Counter = 1000, even if Tracker is empty
+    var getResult3 = await service.GetNoTracking(id.Value);
+    Console.WriteLine(getResult3.Counter); //get Counter = 1000, even if no Tracking
 }
 
 async Task Example1AsNoTracking()
